@@ -9,33 +9,68 @@ public class RubricaTelefonica implements Rubrica {
 	// TODO Fai il costruttore a cui passi il numero massimo (maxCapacity) di contatti dentro la rubrica
 	
 	@Override
-	public boolean insert(SchedaPersona s) {
+	public boolean insert(SchedaPersona contactToRegister) {
 		
-		int i = 0;
-		
-		/* Faccio un ciclo per trovare un contatto vuoto */
-		for (SchedaPersona element : rubrica) {
-			i++;
+		for (int i = 0; i < rubrica.length; i++) {
+			SchedaPersona currentContact = rubrica[i];
 			
-			// Per il controllo PUOI USARE EQUALS invece che fare sta roba
-			if (element.getNome() == "vuoto") {
+			if (currentContact.equals(schedaPersonaVuota)) {
 				// Sovrascrivo contatto
-				rubrica[i - 1] = s;
-				System.out.println("Contatto '" + s.getNome() + "' aggiunto");
+				rubrica[i] = contactToRegister;
+				System.out.println("Contatto '" + contactToRegister.getNome() + "' aggiunto");
 				return true;
+			}
+			
+			// Se la SchedaPersona è già presente ritorno FALSE
+			if (currentContact.equals(contactToRegister)) {
+				System.out.println("Contatto \"" + contactToRegister.getNome() + "\" già esistente!");
+				break;
 			}
 			
 			/* Se l'ultimo elemento è diverso da vuoto e mi trovo alla fine
 			 * della rubrica vuol dire che è piena */
-			if (element.getNome() != "vuoto" && i == rubrica.length) {
-				System.out.println("Rubrica piena :(, non posso aggiungere " + s.getNome());
-				return false;
-				// break  // Posso usare questo per uscire dal ciclo e usare il false sotto
+			if (!currentContact.equals(schedaPersonaVuota) && ++i == rubrica.length) {
+				System.out.println("Rubrica piena :(, non posso aggiungere " + contactToRegister.getNome());
+				break;
 			}
-			
 		}
 		
 		return false;
+		
+		
+//		
+//		int i = 0;
+//		
+//		/* Faccio un ciclo per trovare un contatto vuoto */
+//		for (SchedaPersona element : rubrica) {
+//			i++;
+//			
+//			
+////			if (element.getNome() == "vuoto") {
+//			if (element.equals(schedaPersonaVuota)) {
+//				// Sovrascrivo contatto
+//				rubrica[i - 1] = s;
+//				System.out.println("Contatto '" + s.getNome() + "' aggiunto");
+//				return true;
+//			}
+//			
+//			// Se la SchedaPersona è già presente ritorno FALSE
+//			if (element.equals(s)) {
+//				System.out.println("Contatto \"" + s.getNome() + "\" già esistente!");
+//				break;
+//			}
+//			
+//			/* Se l'ultimo elemento è diverso da vuoto e mi trovo alla fine
+//			 * della rubrica vuol dire che è piena */
+////			if (element.getNome() != "vuoto" && i == rubrica.length) {
+//			if (!element.equals(schedaPersonaVuota) && i == rubrica.length) {
+//				System.out.println("Rubrica piena :(, non posso aggiungere " + s.getNome());
+//				break;
+//			}
+//			
+//		}
+//		
+//		return false;
 	}
 
 	@Override

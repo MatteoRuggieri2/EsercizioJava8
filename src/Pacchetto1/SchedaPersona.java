@@ -61,7 +61,7 @@ public class SchedaPersona {
 		// Converto l'obj passato nel tipo "SchedaPersona"
 		SchedaPersona sp = (SchedaPersona) obj;
 		
-		/* Se indirizzo, nome e numero dell'oggetto passato sono */
+		/* Se indirizzo, nome e numero dell'oggetto passato sono uguali */
 		if (this.indirizzo.equals(sp.indirizzo) && this.nome.equals(sp.nome) && this.numero.equals(numero)) {
 			return true;
 		} else {
