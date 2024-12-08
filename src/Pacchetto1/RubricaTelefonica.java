@@ -21,6 +21,8 @@ public class RubricaTelefonica implements Rubrica {
 				return true;
 			}
 			
+			//TODO -> BUG, salta un posto
+			
 			// Se la SchedaPersona è già presente ritorno FALSE
 			if (currentContact.equals(contactToRegister)) {
 				System.out.println("Contatto \"" + contactToRegister.getNome() + "\" già esistente!");
@@ -29,7 +31,7 @@ public class RubricaTelefonica implements Rubrica {
 			
 			/* Se l'ultimo elemento è diverso da vuoto e mi trovo alla fine
 			 * della rubrica vuol dire che è piena */
-			if (!currentContact.equals(schedaPersonaVuota) && ++i == rubrica.length) {
+			if (!currentContact.equals(schedaPersonaVuota) && i == rubrica.length - 1) {
 				System.out.println("Rubrica piena :(, non posso aggiungere " + contactToRegister.getNome());
 				break;
 			}
