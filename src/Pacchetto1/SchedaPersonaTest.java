@@ -24,8 +24,15 @@ class SchedaPersonaTest {
 	}
 	
 	@Test
+	void constructorTest() {
+		RubricaTelefonica miaRubrica = new RubricaTelefonica(5);
+		SchedaPersona[] resultArray = {schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota};
+		assertArrayEquals(resultArray, miaRubrica.rubrica);
+	}
+ 	
+	@Test
 	void insertTest() {
-		RubricaTelefonica miaRubrica = new RubricaTelefonica();
+		RubricaTelefonica miaRubrica = new RubricaTelefonica(3);
 		
 		// Prova inserimento corretto del contatto
 		assertTrue(miaRubrica.insert(persona1));

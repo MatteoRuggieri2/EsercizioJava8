@@ -8,7 +8,7 @@ public class Main {
  		SchedaPersona giovanni = new SchedaPersona("Giovanni Bianchi", "Via di test, 15", "3279998887");
 
 		
-		RubricaTelefonica miaRubrica = new RubricaTelefonica();
+		RubricaTelefonica miaRubrica = new RubricaTelefonica(3);
 		miaRubrica.insert(matteo);
 		miaRubrica.insert(max);
 		miaRubrica.insert(giovanni);

@@ -4,9 +4,17 @@ public class RubricaTelefonica implements Rubrica {
 	SchedaPersona schedaPersonaVuota = new SchedaPersona("vuoto", "vuoto", "vuoto");
 	
 	// Inizializzo la rubrica vuota.
-	SchedaPersona[] rubrica = {schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota};
+//	SchedaPersona[] rubrica = {schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota};
+	SchedaPersona[] rubrica;
 
 	// TODO Fai il costruttore a cui passi il numero massimo (maxCapacity) di contatti dentro la rubrica
+	public RubricaTelefonica(int maxCapacity) {
+		rubrica = new SchedaPersona[maxCapacity];
+		for (int i = 0; i < maxCapacity; i++) {
+			rubrica[i] = schedaPersonaVuota;
+		}
+	}
+	
 	
 	@Override
 	public boolean insert(SchedaPersona contactToRegister) {
@@ -20,8 +28,6 @@ public class RubricaTelefonica implements Rubrica {
 				System.out.println("Contatto '" + contactToRegister.getNome() + "' aggiunto");
 				return true;
 			}
-			
-			//TODO -> BUG, salta un posto
 			
 			// Se la SchedaPersona è già presente ritorno FALSE
 			if (currentContact.equals(contactToRegister)) {
@@ -38,41 +44,6 @@ public class RubricaTelefonica implements Rubrica {
 		}
 		
 		return false;
-		
-		
-//		
-//		int i = 0;
-//		
-//		/* Faccio un ciclo per trovare un contatto vuoto */
-//		for (SchedaPersona element : rubrica) {
-//			i++;
-//			
-//			
-////			if (element.getNome() == "vuoto") {
-//			if (element.equals(schedaPersonaVuota)) {
-//				// Sovrascrivo contatto
-//				rubrica[i - 1] = s;
-//				System.out.println("Contatto '" + s.getNome() + "' aggiunto");
-//				return true;
-//			}
-//			
-//			// Se la SchedaPersona è già presente ritorno FALSE
-//			if (element.equals(s)) {
-//				System.out.println("Contatto \"" + s.getNome() + "\" già esistente!");
-//				break;
-//			}
-//			
-//			/* Se l'ultimo elemento è diverso da vuoto e mi trovo alla fine
-//			 * della rubrica vuol dire che è piena */
-////			if (element.getNome() != "vuoto" && i == rubrica.length) {
-//			if (!element.equals(schedaPersonaVuota) && i == rubrica.length) {
-//				System.out.println("Rubrica piena :(, non posso aggiungere " + s.getNome());
-//				break;
-//			}
-//			
-//		}
-//		
-//		return false;
 	}
 
 	@Override
