@@ -64,49 +64,24 @@ public class RubricaTelefonica implements Rubrica {
 		foundedContacts = new SchedaPersona[foundedContactsQta];
 		
 		// Popolo l'array
-		for (int i = 0; i < this.rubrica.length; i++) {
-			SchedaPersona contact = this.rubrica[i];
+		int savedContactsCounter = 0;
+		for (SchedaPersona contact : this.rubrica) {
 			if (contact.getNome() != "vuoto" && contact.contains(stringToResearch)) {
-				foundedContacts[i] = contact;
+				foundedContacts[savedContactsCounter] = contact;
+				savedContactsCounter++;
 			}
-			
 		}
 		
+		System.out.println("----------------------------");
+		System.out.println("Ricerca: \"" + stringToResearch + "\"");
 		System.out.println("Risultati trovati: " + foundedContactsQta);
 		for (SchedaPersona schedaPersona : foundedContacts) {
 			System.out.println(schedaPersona.toString());
 		}
+		System.out.println("----------------------------");
+		
 		return foundedContacts;
 		
-		
-		
-		
-		
-//		SchedaPersona[] foundedContacts = {schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota};
-//		
-//		// Numero di persone trovate
-//		int foundedContactsNumber = 0;
-//		
-//		/* Per ogni persona dentro rubrica, se ha un dato che contiene
-//		 * la stringa passata, lo inserisco dentro l'array "foundedContacts" */
-//		int i = 0;
-//		for (SchedaPersona element : foundedContacts) {
-//			i++;
-//			if (element.getNome().toLowerCase().contains(stringToResearch) || element.getIndirizzo().toLowerCase().contains(stringToResearch) || element.getNumero().toLowerCase().contains(stringToResearch)) {
-//				foundedContacts[i - 1] = element;
-//			}
-//		}
-//		
-//		/* Mi creo un array dinamico in base a quante persone ho trovato */
-//		SchedaPersona[] finalFoundedContacts = new SchedaPersona[foundedContactsNumber];
-//		int i2 = 0;
-//		for (SchedaPersona personaTrovata : foundedContacts) {
-//			i2++;
-//			finalFoundedContacts[i2 - 1] = personaTrovata;
-//		}
-//		
-//		// Ritorno i contatti trovati
-//		return finalFoundedContacts;
 	}
 	
 	@Override

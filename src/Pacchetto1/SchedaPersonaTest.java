@@ -18,7 +18,7 @@ class SchedaPersonaTest {
 		schedaPersonaVuota = new SchedaPersona("vuoto", "vuoto", "vuoto");
 		persona1 = new SchedaPersona("Matteo Ruggieri", "Via di test, 15", "3279998887");
 		persona2 = new SchedaPersona("Gianni Morandi", "Via di test, 58", "4439808972");
-		persona3 = new SchedaPersona("Jovanotti Cherubini", "Via di test, 62", "4859305739");
+		persona3 = new SchedaPersona("Jovanotti Cherubini", "Via di test, 62", "4439808972");
 		persona4 = new SchedaPersona("Marco Bianchi", "Via di test, 32", "3245786568");
 		
 	}
@@ -54,15 +54,32 @@ class SchedaPersonaTest {
 	
 	@Test
 	void searchTest() {
-		RubricaTelefonica contactsList = new RubricaTelefonica(3);
+		
+		// Inizializzazione della rubrica con un contatto vuoto (serve x test)
+		RubricaTelefonica contactsList = new RubricaTelefonica(4);
 		assertTrue(contactsList.insert(persona1));
 		assertTrue(contactsList.insert(persona2));
+		assertTrue(contactsList.insert(persona3));
 		
-		contactsList.search("Matteo");
+		// Test ricerca prima persona
+		SchedaPersona[] expectedArray = {persona1};
+		assertArrayEquals(expectedArray, contactsList.search("Matteo"));
 		
+		// Test ricerca prima persona
+		SchedaPersona[] expectedArray2 = {persona2};
+		assertArrayEquals(expectedArray2, contactsList.search("morandi"));
+		
+		// Test ricerca multipla
+		SchedaPersona[] expectedArray3 = {persona2, persona3};
+		assertArrayEquals(expectedArray3, contactsList.search("4439808972"));
+		
+		// Test ricerca ignorata (da contatto vuoto)
+		SchedaPersona[] expectedArray4 = {};
+		assertArrayEquals(expectedArray4, contactsList.search("vuo"));
+		
+		// Test validazione stringa
 		assertThrows(IllegalArgumentException.class, () -> contactsList.search(""));
 		assertThrows(IllegalArgumentException.class, () -> contactsList.search(" "));
-		
 	}
 	
 	
