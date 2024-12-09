@@ -25,34 +25,42 @@ class SchedaPersonaTest {
 	
 	@Test
 	void constructorTest() {
-		RubricaTelefonica miaRubrica = new RubricaTelefonica(5);
+		RubricaTelefonica contactsList = new RubricaTelefonica(5);
 		SchedaPersona[] resultArray = {schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota};
-		assertArrayEquals(resultArray, miaRubrica.rubrica);
+		assertArrayEquals(resultArray, contactsList.rubrica);
 	}
  	
 	@Test
 	void insertTest() {
-		RubricaTelefonica miaRubrica = new RubricaTelefonica(3);
+		RubricaTelefonica contactsList = new RubricaTelefonica(3);
 		
 		// Prova inserimento corretto del contatto
-		assertTrue(miaRubrica.insert(persona1));
+		assertTrue(contactsList.insert(persona1));
 		SchedaPersona[] resultArray = {persona1, schedaPersonaVuota, schedaPersonaVuota};
-		assertArrayEquals(resultArray, miaRubrica.rubrica);
+		assertArrayEquals(resultArray, contactsList.rubrica);
 		
 		// Prova inserimento contatto duplicato
-		assertFalse(miaRubrica.insert(persona1));
+		assertFalse(contactsList.insert(persona1));
 		SchedaPersona[] resultArray2 = {persona1, schedaPersonaVuota, schedaPersonaVuota};
-		assertArrayEquals(resultArray2, miaRubrica.rubrica);
+		assertArrayEquals(resultArray2, contactsList.rubrica);
 		
 		// Prova rubrica piena
-		assertTrue(miaRubrica.insert(persona2));
-		assertTrue(miaRubrica.insert(persona3));
-		assertFalse(miaRubrica.insert(persona4));
+		assertTrue(contactsList.insert(persona2));
+		assertTrue(contactsList.insert(persona3));
+		assertFalse(contactsList.insert(persona4));
 		SchedaPersona[] resultArray3 = {persona1, persona2, persona3};
-		assertArrayEquals(resultArray3, miaRubrica.rubrica);
+		assertArrayEquals(resultArray3, contactsList.rubrica);
 	}
 	
-	
+	@Test
+	void searchTest() {
+		RubricaTelefonica contactsList = new RubricaTelefonica(3);
+		assertTrue(contactsList.insert(persona1));
+		assertTrue(contactsList.insert(persona2));
+		
+		contactsList.search("Matteo");
+		
+	}
 	
 	
 	

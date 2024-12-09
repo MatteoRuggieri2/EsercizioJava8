@@ -77,13 +77,12 @@ public class SchedaPersona {
 	  
 	*/
 	public boolean contains(String strInp) {
-		strInp = strInp.toLowerCase();
+		strInp = strInp.trim().toLowerCase();
+		
 		// Prendo la stringa passata come argomento è controllo se si trova dentro un'attributo
 		if (this.nome.toLowerCase().contains(strInp) || this.indirizzo.toLowerCase().contains(strInp) || this.numero.toLowerCase().contains(strInp)) {
-			System.out.println("true");
 			return true;
 		} else {
-			System.out.println("false");
 			return false;
 		}
 	}
