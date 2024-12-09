@@ -4,10 +4,8 @@ public class RubricaTelefonica implements Rubrica {
 	SchedaPersona schedaPersonaVuota = new SchedaPersona("vuoto", "vuoto", "vuoto");
 	
 	// Inizializzo la rubrica vuota.
-//	SchedaPersona[] rubrica = {schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota};
 	SchedaPersona[] rubrica;
 
-	// TODO Fai il costruttore a cui passi il numero massimo (maxCapacity) di contatti dentro la rubrica
 	public RubricaTelefonica(int maxCapacity) {
 		rubrica = new SchedaPersona[maxCapacity];
 		for (int i = 0; i < maxCapacity; i++) {
@@ -86,6 +84,10 @@ public class RubricaTelefonica implements Rubrica {
 	
 	@Override
 	public String toString() {
+		String rubricaToString = "N° contatti: 10 | nome, nome";
+		for (SchedaPersona schedaPersona : rubrica) {
+			System.out.println(schedaPersona.toString());
+		}
 		return "string";
 	}
 
@@ -95,5 +97,15 @@ public class RubricaTelefonica implements Rubrica {
 		/* Fai anche la compattazione dell'array, ovvero i valori null devi metterli
 		 * sempre alla fine */
 		return false;
+	}
+	
+	private int contactsListCount() {
+		int count = 0;
+		for (SchedaPersona schedaPersona : rubrica) {
+			if (schedaPersona.getNome() != "vuoto") {
+				count++;
+			}
+		}
+		return count;
 	}
 }
