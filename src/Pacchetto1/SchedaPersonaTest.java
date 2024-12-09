@@ -82,6 +82,22 @@ class SchedaPersonaTest {
 		assertThrows(IllegalArgumentException.class, () -> contactsList.search(" "));
 	}
 	
+	@Test
+	void toStringTest() {
+		// Test con la rubrica non completa
+		RubricaTelefonica contactsList = new RubricaTelefonica(50);
+		assertTrue(contactsList.insert(persona1));
+		assertTrue(contactsList.insert(persona2));
+		
+		String expectedString = "ELENCO RUBRICA - N° contatti: 2, Matteo Ruggieri, Gianni Morandi";
+		assertEquals(expectedString, contactsList.toString());
+		
+		// Test con rubrica vuota
+		RubricaTelefonica contactsList2 = new RubricaTelefonica(50);
+		
+		String expectedString2 = "ELENCO RUBRICA - N° contatti: 0";
+		assertEquals(expectedString2, contactsList2.toString());
+	}
 	
 	
 	

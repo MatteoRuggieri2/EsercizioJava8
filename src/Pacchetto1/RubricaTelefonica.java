@@ -84,11 +84,15 @@ public class RubricaTelefonica implements Rubrica {
 	
 	@Override
 	public String toString() {
-		String rubricaToString = "N° contatti: 10 | nome, nome";
+		String rubricaToString = "ELENCO RUBRICA - N° contatti: " + this.contactsListCount();
 		for (SchedaPersona schedaPersona : rubrica) {
-			System.out.println(schedaPersona.toString());
+			if (schedaPersona.getNome() != "vuoto") {
+				rubricaToString = rubricaToString + ", " + schedaPersona.getNome();
+			}
 		}
-		return "string";
+		
+		System.out.println(rubricaToString);
+		return rubricaToString;
 	}
 
 	@Override
