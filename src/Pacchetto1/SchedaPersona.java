@@ -79,6 +79,10 @@ public class SchedaPersona {
 	public boolean contains(String strInp) {
 		strInp = strInp.trim().toLowerCase();
 		
+		if (strInp.length() < 1) {
+			throw new IllegalArgumentException("La stringa \"" + strInp + "\" non è valida");
+		}
+		
 		// Prendo la stringa passata come argomento è controllo se si trova dentro un'attributo
 		if (this.nome.toLowerCase().contains(strInp) || this.indirizzo.toLowerCase().contains(strInp) || this.numero.toLowerCase().contains(strInp)) {
 			return true;

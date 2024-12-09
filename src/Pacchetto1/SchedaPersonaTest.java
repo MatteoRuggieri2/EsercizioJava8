@@ -60,6 +60,9 @@ class SchedaPersonaTest {
 		
 		contactsList.search("Matteo");
 		
+		assertThrows(IllegalArgumentException.class, () -> contactsList.search(""));
+		assertThrows(IllegalArgumentException.class, () -> contactsList.search(" "));
+		
 	}
 	
 	
