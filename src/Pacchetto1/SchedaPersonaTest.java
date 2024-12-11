@@ -123,8 +123,22 @@ class SchedaPersonaTest {
 	
 	@Test
 	void deleteTest() {
-		RubricaTelefonica contactsList = new RubricaTelefonica(5);
+		RubricaTelefonica contactsList = new RubricaTelefonica(3);
+		assertTrue(contactsList.insert(persona1));
+		assertTrue(contactsList.insert(persona2));
+		assertTrue(contactsList.insert(persona3));
+		
+		SchedaPersona[] expectedArray1 = {persona2, persona3, schedaPersonaVuota};
 		contactsList.delete(persona1);
+		assertArrayEquals(expectedArray1, contactsList.rubrica);
+		
+		SchedaPersona[] expectedArray2 = {persona3, schedaPersonaVuota, schedaPersonaVuota};
+		contactsList.delete(persona2);
+		assertArrayEquals(expectedArray2, contactsList.rubrica);
+		
+		SchedaPersona[] expectedArray3 = {schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota};
+		contactsList.delete(persona3);
+		assertArrayEquals(expectedArray3, contactsList.rubrica);
 	}
 	
 	

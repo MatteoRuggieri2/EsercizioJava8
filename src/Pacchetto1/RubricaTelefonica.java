@@ -91,23 +91,30 @@ public class RubricaTelefonica implements Rubrica {
 			}
 		}
 		
-		System.out.println(rubricaToString);
 		return rubricaToString;
 	}
 
+	// Questo metodo ha il compito di eliminare un contatto.
+	// Alla fine compatta la rubrica.
 	@Override
-	public boolean delete(SchedaPersona s) {
-		// TODO Auto-generated method stub
-		/* Fai anche la compattazione dell'array, ovvero i valori null devi metterli
-		 * sempre alla fine */
+	public boolean delete(SchedaPersona elementToDelete) {
 		
-		// Matteo, Ale, Gianni
-		// elimino Ale
-		// Matteo, Gianni, vuoto   // risultato
+		// Elimino il contatto
+		for (int i = 0; i < rubrica.length; i++) {
+			SchedaPersona schedaPersona = rubrica[i];
+			if (schedaPersona.equals(elementToDelete)) {
+				rubrica[i] = schedaPersonaVuota;
+			}
+			
+		}
 		
-//		this.compactArray();
+		// Compatto la rubrica
+		this.compactRubrica();
 		
-		return false;
+		System.out.println("Rubrica aggiornata");
+		System.out.println(this.toString());
+		
+		return true;
 	}
 	
 	private int contactsListCount() {
@@ -120,6 +127,10 @@ public class RubricaTelefonica implements Rubrica {
 		return count;
 	}
 	
+	/* Questo metodo ha il compito di compattare un array.
+	 * Ad esempio, se eliminassimo il primo contatto e quindi lo rimpiazzassimo
+	 * con uno vuoto, quello vuoto non deve andare al primo posto, ma all'ultimo,
+	 * e gli altri contatti devono scalare in avanti. */
 	public SchedaPersona[] compactArray(SchedaPersona[] inputArray) {
 		
 		int emptyContactPosition = -1; // 1
@@ -141,11 +152,10 @@ public class RubricaTelefonica implements Rubrica {
 			
 		}
 		
-		System.out.println("Rubrica compattata");
-		for (SchedaPersona schedaPersona : inputArray) {
-			System.out.println(schedaPersona.toString());
-		}
-		
 		return inputArray;
+	}
+	
+	private void compactRubrica() {
+		this.rubrica = this.compactArray(rubrica);
 	}
 }
