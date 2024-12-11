@@ -3,7 +3,7 @@ package Pacchetto1;
 public class RubricaTelefonica implements Rubrica {
 	SchedaPersona schedaPersonaVuota = new SchedaPersona("vuoto", "vuoto", "vuoto");
 	
-	// Inizializzo la rubrica vuota.
+	// Dichiaro la rubrica vuota.
 	SchedaPersona[] rubrica;
 
 	public RubricaTelefonica(int maxCapacity) {
@@ -100,6 +100,13 @@ public class RubricaTelefonica implements Rubrica {
 		// TODO Auto-generated method stub
 		/* Fai anche la compattazione dell'array, ovvero i valori null devi metterli
 		 * sempre alla fine */
+		
+		// Matteo, Ale, Gianni
+		// elimino Ale
+		// Matteo, Gianni, vuoto   // risultato
+		
+		this.compactArray();
+		
 		return false;
 	}
 	
@@ -111,5 +118,42 @@ public class RubricaTelefonica implements Rubrica {
 			}
 		}
 		return count;
+	}
+	
+	public SchedaPersona[] compactArray() {
+		
+		// test
+		SchedaPersona persona1 = new SchedaPersona("Matteo Ruggieri", "Via di test, 15", "3279998887");
+		SchedaPersona persona3 = new SchedaPersona("Gianni Morandi", "Via di test, 58", "4439808972");
+		SchedaPersona persona4 = new SchedaPersona("Marco Bianchi", "Via di test, 32", "3245786568");
+//		SchedaPersona[] inputArray = {persona1, schedaPersonaVuota, persona3, persona4};
+//		SchedaPersona[] inputArray = {persona1, schedaPersonaVuota, schedaPersonaVuota, persona4};
+//		SchedaPersona[] inputArray = {schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota, persona4};
+		SchedaPersona[] inputArray = {schedaPersonaVuota, persona1, persona3, persona4};
+		
+		int emptyContactPosition = -1; // 1
+		for (int i = 0; i < inputArray.length; i++) { // 1
+			SchedaPersona element = inputArray[i];
+			if (element.equals(schedaPersonaVuota)) {
+				emptyContactPosition = i;
+				
+				// Se è l'ultimo elemento è vuoto, non entra nel ciclo perchè dopo non c'è nessun contatto con cui sostituire
+				for (int j = emptyContactPosition + 1; j < inputArray.length; j++) { // 3
+					SchedaPersona element2 = inputArray[j];
+					if (!element2.equals(schedaPersonaVuota)) {
+						inputArray[emptyContactPosition] = element2;  // metto nella posizione vuota il prox contatto
+						inputArray[j] = schedaPersonaVuota;  // Al posto del contatto che ho spostato metto un contatto vuoto
+						break;
+					}
+				}
+			}
+			
+		}
+		
+		for (SchedaPersona schedaPersona : inputArray) {
+			System.out.println(schedaPersona.toString());
+		}
+//		SchedaPersona[] resultArray = {};
+		return inputArray;
 	}
 }
