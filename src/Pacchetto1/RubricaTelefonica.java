@@ -105,7 +105,7 @@ public class RubricaTelefonica implements Rubrica {
 		// elimino Ale
 		// Matteo, Gianni, vuoto   // risultato
 		
-		this.compactArray();
+//		this.compactArray();
 		
 		return false;
 	}
@@ -120,16 +120,7 @@ public class RubricaTelefonica implements Rubrica {
 		return count;
 	}
 	
-	public SchedaPersona[] compactArray() {
-		
-		// test
-		SchedaPersona persona1 = new SchedaPersona("Matteo Ruggieri", "Via di test, 15", "3279998887");
-		SchedaPersona persona3 = new SchedaPersona("Gianni Morandi", "Via di test, 58", "4439808972");
-		SchedaPersona persona4 = new SchedaPersona("Marco Bianchi", "Via di test, 32", "3245786568");
-//		SchedaPersona[] inputArray = {persona1, schedaPersonaVuota, persona3, persona4};
-//		SchedaPersona[] inputArray = {persona1, schedaPersonaVuota, schedaPersonaVuota, persona4};
-//		SchedaPersona[] inputArray = {schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota, persona4};
-		SchedaPersona[] inputArray = {schedaPersonaVuota, persona1, persona3, persona4};
+	public SchedaPersona[] compactArray(SchedaPersona[] inputArray) {
 		
 		int emptyContactPosition = -1; // 1
 		for (int i = 0; i < inputArray.length; i++) { // 1
@@ -150,10 +141,11 @@ public class RubricaTelefonica implements Rubrica {
 			
 		}
 		
+		System.out.println("Rubrica compattata");
 		for (SchedaPersona schedaPersona : inputArray) {
 			System.out.println(schedaPersona.toString());
 		}
-//		SchedaPersona[] resultArray = {};
+		
 		return inputArray;
 	}
 }
