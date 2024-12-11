@@ -27,7 +27,7 @@ class SchedaPersonaTest {
 	void constructorTest() {
 		RubricaTelefonica contactsList = new RubricaTelefonica(5);
 		SchedaPersona[] resultArray = {schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota};
-		assertArrayEquals(resultArray, contactsList.rubrica);
+		assertArrayEquals(resultArray, contactsList.getRubrica());
 	}
  	
 	@Test
@@ -37,19 +37,19 @@ class SchedaPersonaTest {
 		// Prova inserimento corretto del contatto
 		assertTrue(contactsList.insert(persona1));
 		SchedaPersona[] resultArray = {persona1, schedaPersonaVuota, schedaPersonaVuota};
-		assertArrayEquals(resultArray, contactsList.rubrica);
+		assertArrayEquals(resultArray, contactsList.getRubrica());
 		
 		// Prova inserimento contatto duplicato
 		assertFalse(contactsList.insert(persona1));
 		SchedaPersona[] resultArray2 = {persona1, schedaPersonaVuota, schedaPersonaVuota};
-		assertArrayEquals(resultArray2, contactsList.rubrica);
+		assertArrayEquals(resultArray2, contactsList.getRubrica());
 		
 		// Prova rubrica piena
 		assertTrue(contactsList.insert(persona2));
 		assertTrue(contactsList.insert(persona3));
 		assertFalse(contactsList.insert(persona4));
 		SchedaPersona[] resultArray3 = {persona1, persona2, persona3};
-		assertArrayEquals(resultArray3, contactsList.rubrica);
+		assertArrayEquals(resultArray3, contactsList.getRubrica());
 	}
 	
 	@Test
@@ -128,17 +128,20 @@ class SchedaPersonaTest {
 		assertTrue(contactsList.insert(persona2));
 		assertTrue(contactsList.insert(persona3));
 		
+		// Elimino il primo contatto (persona1)
 		SchedaPersona[] expectedArray1 = {persona2, persona3, schedaPersonaVuota};
 		contactsList.delete(persona1);
-		assertArrayEquals(expectedArray1, contactsList.rubrica);
+		assertArrayEquals(expectedArray1, contactsList.getRubrica());
 		
+		// Elimino persona 2 (primo contatto grazie alla compattazione)
 		SchedaPersona[] expectedArray2 = {persona3, schedaPersonaVuota, schedaPersonaVuota};
 		contactsList.delete(persona2);
-		assertArrayEquals(expectedArray2, contactsList.rubrica);
+		assertArrayEquals(expectedArray2, contactsList.getRubrica());
 		
+		// Elimino persona 3
 		SchedaPersona[] expectedArray3 = {schedaPersonaVuota, schedaPersonaVuota, schedaPersonaVuota};
 		contactsList.delete(persona3);
-		assertArrayEquals(expectedArray3, contactsList.rubrica);
+		assertArrayEquals(expectedArray3, contactsList.getRubrica());
 	}
 	
 	

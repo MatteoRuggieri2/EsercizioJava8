@@ -4,13 +4,21 @@ public class RubricaTelefonica implements Rubrica {
 	SchedaPersona schedaPersonaVuota = new SchedaPersona("vuoto", "vuoto", "vuoto");
 	
 	// Dichiaro la rubrica vuota.
-	SchedaPersona[] rubrica;
+	private SchedaPersona[] rubrica;
 
 	public RubricaTelefonica(int maxCapacity) {
 		rubrica = new SchedaPersona[maxCapacity];
 		for (int i = 0; i < maxCapacity; i++) {
 			rubrica[i] = schedaPersonaVuota;
 		}
+	}
+	
+	public SchedaPersona[] getRubrica() {
+		return rubrica;
+	}
+	
+	public void setRubrica(SchedaPersona[] rubrica) {
+		this.rubrica = rubrica;
 	}
 	
 	
@@ -52,7 +60,7 @@ public class RubricaTelefonica implements Rubrica {
 		/* Siccome in questo esercizio dobbiamo utilizzare solo gli array,
 		 * sono obbligaato a fare 2 cicli, uno per capire quanti risultati
 		 * genera la ricerca, e uno per salvarli nell'array finale. */
-		for (SchedaPersona contact : this.rubrica) {
+		for (SchedaPersona contact : rubrica) {
 			if (contact.getNome() != "vuoto" && contact.contains(stringToResearch)) {
 				foundedContactsQta++;
 			}
@@ -63,7 +71,7 @@ public class RubricaTelefonica implements Rubrica {
 		
 		// Popolo l'array
 		int savedContactsCounter = 0;
-		for (SchedaPersona contact : this.rubrica) {
+		for (SchedaPersona contact : rubrica) {
 			if (contact.getNome() != "vuoto" && contact.contains(stringToResearch)) {
 				foundedContacts[savedContactsCounter] = contact;
 				savedContactsCounter++;
@@ -156,6 +164,6 @@ public class RubricaTelefonica implements Rubrica {
 	}
 	
 	private void compactRubrica() {
-		this.rubrica = this.compactArray(rubrica);
+		rubrica = this.compactArray(rubrica);
 	}
 }
