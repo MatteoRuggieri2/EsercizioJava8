@@ -164,13 +164,9 @@ class SchedaPersonaTest {
 		assertFalse(persona1.contains("Dario"));
 	}
 
-//	@Test
-//	void testHashCode() {
-//		assertEquals(2058933850, persona.hashCode());
-//	}
-//	
-//	@Test
-//	void testToString() {
-//		assertEquals("SchedaPersona -> Nome: Matteo Ruggieri | Indirizzo: Via di test, 15 | Numero: 3279998887", persona.toString());
-//	}
+	@Test
+	void toStringSchedaPersonaTest() {
+		assertEquals("SchedaPersona -> Nome: Matteo Ruggieri | Indirizzo: Via di test, 15 | Numero: 3279998887", persona1.toString());
+	}
+	
 }
