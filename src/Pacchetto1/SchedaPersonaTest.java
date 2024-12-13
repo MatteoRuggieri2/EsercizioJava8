@@ -158,16 +158,12 @@ class SchedaPersonaTest {
 		assertFalse(persona1.equals(persona2));
 	}
 
-//	@Test
-//	void testContainsTrue() {
-//		assertEquals(true, persona.contains("Matteo"));
-//	}
-//	
-//	@Test
-//	void testContainsFalse() {
-//		assertEquals(false, persona.contains("Cestino"));
-//	}
-//
+	@Test
+	void containsTest() {
+		assertTrue(persona1.contains("Matteo"));
+		assertFalse(persona1.contains("Dario"));
+	}
+
 //	@Test
 //	void testHashCode() {
 //		assertEquals(2058933850, persona.hashCode());
