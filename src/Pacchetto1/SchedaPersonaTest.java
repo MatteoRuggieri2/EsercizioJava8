@@ -23,6 +23,8 @@ class SchedaPersonaTest {
 		
 	}
 	
+	// TEST DELLA CLASSE "RubricaTelefonica"
+	
 	@Test
 	void constructorTest() {
 		RubricaTelefonica contactsList = new RubricaTelefonica(5);
@@ -145,24 +147,17 @@ class SchedaPersonaTest {
 	}
 	
 	
+	// TEST METODI DELLA CLASSE "SchedaPersona"
 	
-	
-	
-//TODO -> Test SchedaPersona Class
-	
-	
-	
-	
-//	@Test
-//	void testEqualsTrue() {
-//		assertEquals(true, persona.equals(persona));
-//	}
-//	
-//	@Test
-//	void testEqualsFalse() {
-//		assertEquals(false, persona.equals(persona2));
-//	}
-//	
+	/* In questo esercizio il metodo equals() non ha il comportamento di default
+	 * (ovvero confrontare i riferimenti dell'oggetto) ma confronta il contenuto degli attributi.
+	 */
+	@Test
+	void equalsTest() {
+		assertTrue(persona1.equals(persona1));
+		assertFalse(persona1.equals(persona2));
+	}
+
 //	@Test
 //	void testContainsTrue() {
 //		assertEquals(true, persona.contains("Matteo"));
